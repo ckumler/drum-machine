@@ -3,7 +3,7 @@ import "./App.css";
 import DrumPad from "./DrumPad";
 
 function App() {
-    const [currentSound, setCurrentSound] = useState("");
+    const [currentSound, setCurrentSound] = useState("Click play a sound!");
     return (
         <>
             <div>
