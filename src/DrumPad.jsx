@@ -1,10 +1,18 @@
-function DrumPad({ id, label, src }) {
-    const audioRef = React.useRef();
+import { useRef, useEffect, useState } from "react";
+
+function DrumPad({ id, label, setCurrentSound }) {
+    const audioRef = useRef();
+    const [isActive, setIsActive] = useState(false);
 
     const playSound = () => {
         if (audioRef.current) {
             audioRef.current.currentTime = 0;
             audioRef.current.play();
+
+            setCurrentSound(id);
+
+            setIsActive(true);
+            setTimeout(() => setIsActive(false), 100);
         }
     };
 
@@ -20,9 +28,20 @@ function DrumPad({ id, label, src }) {
     }, [label]);
 
     return (
-        <button className="drum-pad" id={id} onClick={playSound}>
-            <audio ref={audioRef} className="clip" id={label} src={src}></audio>
+        <button
+            className={`drum-pad ${isActive ? "active" : ""}`}
+            id={id}
+            onClick={playSound}
+        >
+            <audio
+                ref={audioRef}
+                className="clip"
+                id={label}
+                src={`/sounds/${id}.wav`}
+            ></audio>
             {label}
         </button>
     );
 }
+
+export default DrumPad;
