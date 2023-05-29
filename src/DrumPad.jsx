@@ -37,7 +37,7 @@ function DrumPad({ id, label, setCurrentSound }) {
                 ref={audioRef}
                 className="clip"
                 id={label}
-                src={`/sounds/${id}.wav`}
+                src={`./sounds/${id}.wav`}
             ></audio>
             {label}
         </button>
